@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="ht">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ViralClip LIVE</title>
+<style>
+body {
+background:#101020;
+color:white;
+font-family:Arial,sans-serif;
+text-align:center;
+padding:20px;
+}
+h1 {color:#ff3155;}
+video {width:100%;margin-top:20px;}
+</style>
+</head>
+<body>
+<h1>🔴 ViralClip LIVE</h1>
+<h2>Byenveni sou platfòm nou an!</h2>
+<p>Kreye epi pataje videyo kout an dirèk.</p>
+<input type="file" accept="video/*" id="videoFile">
+<video id="player" controls></video>
+<script>
+const input=document.getElementById("videoFile");
+const player=document.getElementById("player");
+input.addEventListener("change",function(){
+const file=this.files[0];
+if(file){
+player.src=URL.createObjectURL(file);
+player.play();
+}
+});
+</script>
+</body>
+</html>
