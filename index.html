@@ -5,34 +5,151 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ViralClip LIVE</title>
+
 <style>
-body {
-background:#101020;
-color:white;
-font-family:Arial,sans-serif;
-text-align:center;
-padding:20px;
+* {
+  box-sizing: border-box;
 }
-h1 {color:#ff3155;}
-video {width:100%;margin-top:20px;}
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: #101020;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  text-align: center;
+  padding: 25px 5px;
+}
+
+h1 {
+  color: #ff3155;
+  font-size: 34px;
+}
+
+.subtitle {
+  color: #aaa;
+}
+
+.card {
+  background: #202035;
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 20px;
+}
+
+button, .upload {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  border: 0;
+  border-radius: 10px;
+  background: #ff3155;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+input {
+  width: 100%;
+  padding: 13px;
+  margin-top: 12px;
+  border-radius: 8px;
+  border: 1px solid #555;
+}
+
+video {
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 12px;
+  background: black;
+}
+
+.status {
+  color: #32df83;
+  text-align: center;
+}
 </style>
 </head>
+
 <body>
-<h1>🔴 ViralClip LIVE</h1>
-<h2>Byenveni sou platfòm nou an!</h2>
-<p>Kreye epi pataje videyo kout an dirèk.</p>
-<input type="file" accept="video/*" id="videoFile">
-<video id="player" controls></video>
+
+<header>
+  <h1>🔴 ViralClip LIVE</h1>
+  <p class="subtitle">
+    Kreye epi pataje videyo kout an dirèk!
+  </p>
+</header>
+
+<div class="card">
+  <h2>🎬 Kreye videyo ou</h2>
+
+  <input
+    type="text"
+    id="username"
+    placeholder="Antre non ou"
+  >
+
+  <label class="upload">
+    📁 Chwazi videyo ou
+    <input
+      type="file"
+      id="videoFile"
+      accept="video/*"
+    >
+  </label>
+
+  <video id="preview" controls hidden></video>
+
+  <button onclick="publishVideo()">
+    🚀 Pibliye videyo
+  </button>
+
+  <p id="status" class="status"></p>
+</div>
+
+<div class="card">
+  <h2>🌍 Byenveni sou ViralClip LIVE</h2>
+  <p>
+    Pataje kreyasyon ou ak kominote a.
+    Fè videyo ou vin viral!
+  </p>
+</div>
+
 <script>
-const input=document.getElementById("videoFile");
-const player=document.getElementById("player");
-input.addEventListener("change",function(){
-const file=this.files[0];
-if(file){
-player.src=URL.createObjectURL(file);
-player.play();
-}
+const videoFile = document.getElementById("videoFile");
+const preview = document.getElementById("preview");
+
+videoFile.addEventListener("change", function() {
+  const file = this.files[0];
+
+  if (file) {
+    preview.src = URL.createObjectURL(file);
+    preview.hidden = false;
+  }
 });
+
+function publishVideo() {
+  const username =
+    document.getElementById("username").value;
+
+  const file = videoFile.files[0];
+  const status = document.getElementById("status");
+
+  if (!username || !file) {
+    status.textContent =
+      "Tanpri antre non ou epi chwazi yon videyo.";
+    return;
+  }
+
+  status.textContent =
+    "Videyo chwazi avèk siksè! Pwochen etap: konekte sèvè piblikasyon an.";
+}
 </script>
+
 </body>
 </html>
